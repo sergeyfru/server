@@ -6,7 +6,8 @@ const router = express.Router()
 
 router.post('/register',_register)
 router.post('/login',_login)
-router.get('/',verifyToken, _all)
+// router.get('/',verifyToken, _all)
+router.get('/', _all)
 
 router.get('/verify',verifyToken,(req,res)=>{
     // console.log(req);
