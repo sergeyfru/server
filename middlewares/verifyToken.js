@@ -5,12 +5,13 @@ dotenv.config()
 const { ACCESS_TOKEN_SECRET } = process.env
 
 export const verifyToken = (req, res, next) => {
+    console.log(req.cookies);
     const accessToken = req.cookies['token'] || req.headers['x-access-token']
 
     if (!accessToken) return res.status(401).json({ msg: 'unauthorized' })
 
     jwt.verify(accessToken, ACCESS_TOKEN_SECRET, (err, decode) => {
-        if (err) return res.status(403).json({ msg: 'forbiden' })
+        if (err) return res.status(403).json({ msg: 'forbidden' })
         // set user into request
     req.userid= decode.id;
     req.useremail= decode.email

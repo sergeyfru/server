@@ -1,7 +1,9 @@
 import knex from 'knex'
 import dotenv from 'dotenv'
 dotenv.config()
+
 const {PGHOST,PGDATABASE,PGUSER,PGPASSWORD,PGURL,PGPORT} = process.env
+
 export const db = knex({
     client:'pg',
     connection:{

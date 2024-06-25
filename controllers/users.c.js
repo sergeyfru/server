@@ -30,8 +30,10 @@ export const _login = async (req, res) => {
             httpOnly: true,
             maxAge: 60 * 1000
         })
-        res.json({ token: accessToken })
 
+        console.log('req.cookies',req.cookies);
+
+        res.json({ token: accessToken })
 
     } catch (error) {
         console.log('_login =>', error);
@@ -46,13 +48,13 @@ export const _login = async (req, res) => {
 export const _register = async (req, res) => {
     const { email, password } = req.body;
     try {
-        const lowerpassword = email.toLowerCase()
+        const loweremail = email.toLowerCase()
 
         const salt = bcrypt.genSaltSync(10);
         const hashPassword = bcrypt.hashSync(password + '', salt)
 
         const newUser = await register({
-            email: lowerpassword,
+            email: loweremail,
             password: hashPassword
         })
         res.json(newUser)
@@ -65,8 +67,8 @@ export const _register = async (req, res) => {
 
 export const _all = async (req, res) => {
     try {
-const users = await all()
-res.json(users)
+        const users = await all()
+        res.json(users)
 
 
 
