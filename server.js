@@ -203,12 +203,6 @@ app.use('/happyBirthday', (req, res) => {
 
 app.listen(process.env.PORT || 3001,()=>{
     console.log(`Run on ${process.env.PORT || 3001}`);
-
-    cron.schedule("* * * * *",()=>{
-      console.log("Server is alive!");
-      console.log(new Date().getMinutes());
-    })
-
 })
 
 app.use('/users',user_router);
