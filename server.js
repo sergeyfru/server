@@ -3,6 +3,7 @@ import cors from 'cors'
 import dotenv from 'dotenv'
 import cookieParser from 'cookie-parser'
 import user_router from './routes/users.r.js'
+import cron from 'node-cron'
 dotenv.config()
 
 const app = express()
@@ -202,6 +203,12 @@ app.use('/happyBirthday', (req, res) => {
 
 app.listen(process.env.PORT || 3001,()=>{
     console.log(`Run on ${process.env.PORT || 3001}`);
+
+    cron.schedule("* * * * *",()=>{
+      console.log("Server is alive!");
+      console.log(new Date().getMinutes());
+    })
+
 })
 
 app.use('/users',user_router);
